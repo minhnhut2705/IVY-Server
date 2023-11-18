@@ -46,6 +46,6 @@ app.get('/', (req, res)=>{
   res.send("Welcome to root URL of Server");
 });
 
-app.listen(PORT, () => {
+app.listen(() => {
   console.log(`Server is running on: ${PORT}`);
 });
