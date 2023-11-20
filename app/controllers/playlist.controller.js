@@ -20,7 +20,27 @@ exports.getAll = async (req, res, next) => {
     });
   }
 };
-
+exports.searchPlaylists = async (req, res, next) => {
+  const playlistIDs = req.body.playlistIDs
+  try {
+    const playlists = await Playlist.find({ '_id': { $in: playlistIDs } })
+    if (!playlists) {
+      return res.status(400).json({
+        success: false,
+        msg: "Cant find any Playlist in database",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      playlists: playlists,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      error: error,
+    });
+  }
+};
 exports.create = async (req, res, next) => {
   const newPlaylist = new Playlist({
     name: req.body.name,

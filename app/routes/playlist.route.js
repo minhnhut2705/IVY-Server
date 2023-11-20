@@ -7,5 +7,6 @@ router.get('/:id', controller.getPlaylist)
 router.post("/new", controller.create)
 router.delete('/delete/:id', controller.deleteOne);
 router.patch('/update/:id', controller.updateOne);
+router.post("/searchPlaylists", controller.searchPlaylists)
 
 module.exports = router
